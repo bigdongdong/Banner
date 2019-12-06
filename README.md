@@ -1,6 +1,8 @@
 # Banner
 ###  自动轮播广告控件，支持交互和自定义界面，可自动轮播，手指触摸停止，手指拿开恢复轮播
 
+<br>
+<img  width = "700" src = "https://github.com/bigdongdong/Banner/blob/master/gif/preview.gif"></img>
 
 # 项目配置
 
