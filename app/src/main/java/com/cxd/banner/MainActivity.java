@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
+import com.bumptech.glide.Glide;
 import com.cxd.moudle.Banner;
 import com.cxd.moudle.OnSelectedListener;
 import com.cxd.moudle.PointsOptions;
@@ -76,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSelectedListener(ImageView iv, Integer integer, int position) {
                         //可以使用任意框架加载布局
-//                        Glide.with(MainActivity.this).load(integer).into(iv);
-                        iv.setImageResource(integer);
+                        Glide.with(MainActivity.this).load(integer).into(iv);
+//                        iv.setImageResource(integer);
                         //给view设置交互监听
                         iv.setOnClickListener(new View.OnClickListener() {
                             @Override
