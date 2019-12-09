@@ -23,7 +23,7 @@ public class PointsView extends LinearLayout {
 
         views = new ArrayList<>();
 
-        this.setLayoutParams(new LinearLayout.LayoutParams(-2,-2));
+        this.setLayoutParams(new LayoutParams(-2,-2));
         this.setOrientation(LinearLayout.HORIZONTAL);
         this.setGravity(Gravity.CENTER_HORIZONTAL);
 

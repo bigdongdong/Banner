@@ -16,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -304,7 +304,7 @@ public class Banner extends RelativeLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            LayoutParams rparams = new RelativeLayout.LayoutParams(-1,-1);
+            LayoutParams rparams = new LayoutParams(-1,-1);
 
             //根据style返回对应view类型
             if(builder.layoutStyle == LAYOUT_STYLE_RELATIVELAYOUT){ //relativelayout

@@ -1,14 +1,11 @@
 package com.cxd.banner;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 
 import com.bumptech.glide.Glide;
 import com.cxd.moudle.Banner;
@@ -113,3 +110,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
