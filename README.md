@@ -50,6 +50,7 @@ banner = new Banner.Builder()
         .animDuration(500)                                         //广告切换的时间（毫秒）
         .isDisplayPoints(true)                                     //是否显示底部指示点，默认显示
         .pointsOptions(options)                                    //设置底部的指示点
+	.isNeedBottomCover(false)				   //是否需要底部遮罩层，默认true
         /**
          * 设置广告页监听
          *    第一个泛型对应layoutStyle:
