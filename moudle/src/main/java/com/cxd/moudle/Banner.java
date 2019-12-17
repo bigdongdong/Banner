@@ -99,17 +99,19 @@ public class Banner extends RelativeLayout {
             pv.setLayoutParams(params);
             pv.setSelected(0);
             this.addView(pv);
-            //添加一个渐变层
-            View view = new View(context);
-            params = new LayoutParams(-1,2 * builder.pointsOptions.marginBottom
-                    +builder.pointsOptions.width);
-            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            view.setLayoutParams(params);
-            GradientDrawable gd = new GradientDrawable();
-            gd.setColors(new int[]{Color.parseColor("#00000000"),
-                    Color.parseColor("#50111111")});
-            view.setBackground(gd);
-            this.addView(view);
+            if(builder.isNeedBottomCover == true){
+                //添加一个渐变层
+                View view = new View(context);
+                params = new LayoutParams(-1,2 * builder.pointsOptions.marginBottom
+                        +builder.pointsOptions.width);
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                view.setLayoutParams(params);
+                GradientDrawable gd = new GradientDrawable();
+                gd.setColors(new int[]{Color.parseColor("#00000000"),
+                        Color.parseColor("#50111111")});
+                view.setBackground(gd);
+                this.addView(view);
+            }
             /* 添加联动 以及position的更新 */
             viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -243,6 +245,7 @@ public class Banner extends RelativeLayout {
         private int stayDuration ;//毫秒
         private int animDuration ;//毫秒
         private PointsOptions pointsOptions ; //设置点导航的样式
+        private boolean isNeedBottomCover = true ; //是否需要底部渐变遮罩层，方便点显示更清晰
 
         public Builder context(Activity context){
             this.context = context ;
@@ -278,6 +281,10 @@ public class Banner extends RelativeLayout {
         }
         public Builder pointsOptions(PointsOptions pointsOptions){
             this.pointsOptions = pointsOptions ;
+            return this;
+        }
+        public Builder isNeedBottomCover(boolean isNeedBottomCover){
+            this.isNeedBottomCover = isNeedBottomCover ;
             return this;
         }
         public Banner build(){
