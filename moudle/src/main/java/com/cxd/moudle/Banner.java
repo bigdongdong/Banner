@@ -317,7 +317,7 @@ public class Banner extends RelativeLayout {
             if(builder.layoutStyle == LAYOUT_STYLE_RELATIVELAYOUT){ //relativelayout
                 RelativeLayout relativeLayout = new RelativeLayout(context);
                 relativeLayout.setLayoutParams(rparams);
-                int p = position % builder.banners.size();
+                int p = getPosition(position);
                 builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p),p);
                 container.addView(relativeLayout);
                 return relativeLayout;
@@ -325,7 +325,7 @@ public class Banner extends RelativeLayout {
                 ImageView imageView = new ImageView(context);
                 imageView.setLayoutParams(rparams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                int p = position % builder.banners.size();
+                int p = getPosition(position);
                 builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p),p);
                 container.addView(imageView);
                 return imageView;
@@ -333,6 +333,16 @@ public class Banner extends RelativeLayout {
 
             return null ;
         }
+
+        private int getPosition(int position){
+            int i = position % builder.banners.size();
+            if(i == 0){
+                return builder.banners.size() - 1;
+            }else{
+                return i - 1;
+            }
+        }
+
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
