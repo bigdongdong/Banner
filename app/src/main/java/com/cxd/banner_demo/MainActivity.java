@@ -1,16 +1,15 @@
-package com.cxd.banner;
+package com.cxd.banner_demo;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
-import com.cxd.moudle.Banner;
-import com.cxd.moudle.OnSelectedListener;
-import com.cxd.moudle.PointsOptions;
+import com.cxd.banner.*;
+import com.cxd.banner_demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +28,21 @@ public class MainActivity extends AppCompatActivity {
         parentLayout = findViewById(R.id.parentLayout);
 
         banners = new ArrayList<>();
-        banners.add(R.mipmap.beauty);
-        banners.add(R.mipmap.beauty_1);
-        banners.add(R.mipmap.beauty_2);
-        banners.add(R.mipmap.beauty_3);
-        banners.add(R.mipmap.beauty_4);
-        banners.add(R.mipmap.beauty_5);
-        banners.add(R.mipmap.beauty_6);
+//        banners.add(R.mipmap.beauty);
+//        banners.add(R.mipmap.beauty_1);
+//        banners.add(R.mipmap.beauty_2);
+//        banners.add(R.mipmap.beauty_3);
+//        banners.add(R.mipmap.beauty_4);
+//        banners.add(R.mipmap.beauty_5);
+//        banners.add(R.mipmap.beauty_6);
+        banners.add(0);
+        banners.add(1);
+        banners.add(2);
+        banners.add(3);
+        banners.add(4);
+        banners.add(5);
+        banners.add(6);
+        banners.add(7);
 
         /**
          * 设置banner底部指示点 ... 的样式
@@ -63,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 .animDuration(500)                                         //广告切换的时间（毫秒）
                 .pointsOptions(options)    //设置底部的指示点
                 .isDisplayPoints(true)
+                .isNeedBottomCover(false)
                 /**
                  * 设置广告页监听
                  *    第一个泛型对应layoutStyle:
@@ -73,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 .onSelectedListener(new OnSelectedListener<ImageView,Integer>() {
                     @Override
                     public void onSelectedListener(ImageView iv, Integer integer, int position) {
+                        Log.i("aaa", "onSelectedListener:  "+integer +"  "+position);
                         //可以使用任意框架加载布局
-                        Glide.with(MainActivity.this).load(integer).into(iv);
+//                        Glide.with(MainActivity.this).load(integer).into(iv);
 //                        iv.setImageResource(integer);
                         //给view设置交互监听
                         iv.setOnClickListener(new View.OnClickListener() {
