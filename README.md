@@ -15,7 +15,7 @@
   }
   
   dependencies {
-	  implementation 'com.github.bigdongdong:Banner:3.0' //添加依赖
+	  implementation 'com.github.bigdongdong:Banner:3.5' //添加依赖
   }
 ```
 
