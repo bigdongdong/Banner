@@ -1,4 +1,4 @@
-package com.cxd.moudle;
+package com.cxd.banner;
 
 /**
  * 指示点布局的参数

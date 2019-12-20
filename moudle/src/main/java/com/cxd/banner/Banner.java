@@ -1,4 +1,4 @@
-package com.cxd.moudle;
+package com.cxd.banner;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -19,6 +19,7 @@ import android.widget.Scroller;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+
 
 import java.lang.reflect.Field;
 import java.util.List;

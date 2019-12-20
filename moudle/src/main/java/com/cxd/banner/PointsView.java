@@ -1,4 +1,4 @@
-package com.cxd.moudle;
+package com.cxd.banner;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
