@@ -53,7 +53,7 @@ public class Banner extends RelativeLayout {
     private Handler handler ;
     private int what = 1; //动态控制该值来实现自动与停播的功能
 
-    private boolean isRunning = false ;
+//    private boolean isRunning = false ;
     private Banner(Activity context , final Builder builder) {
         super(context);
 
@@ -216,11 +216,18 @@ public class Banner extends RelativeLayout {
 
     /* 启动轮播 */
     public void start(){
-        if(timer != null && isRunning == false){
+        try{
+            setAutoPlayTimer();
             timer.schedule(timerTask,100,builder.stayDuration);
-            Log.i(TAG, "start:stayDuration "+builder.stayDuration);
-            isRunning = true ;
+        }catch(Exception e){
+
         }
+
+//        if(timer != null && isRunning == false){
+//            timer.schedule(timerTask,100,builder.stayDuration);
+//            Log.i(TAG, "start:stayDuration "+builder.stayDuration);
+//            isRunning = true ;
+//        }
     }
 
     /* 停止轮播 */
@@ -318,7 +325,7 @@ public class Banner extends RelativeLayout {
             if(builder.layoutStyle == LAYOUT_STYLE_RELATIVELAYOUT){ //relativelayout
                 RelativeLayout relativeLayout = new RelativeLayout(context);
                 relativeLayout.setLayoutParams(rparams);
-                int p = getPosition(position);
+                int p = position % builder.banners.size();
                 builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p),p);
                 container.addView(relativeLayout);
                 return relativeLayout;
@@ -326,7 +333,7 @@ public class Banner extends RelativeLayout {
                 ImageView imageView = new ImageView(context);
                 imageView.setLayoutParams(rparams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                int p = getPosition(position);
+                int p = position % builder.banners.size();
                 builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p),p);
                 container.addView(imageView);
                 return imageView;
@@ -335,14 +342,6 @@ public class Banner extends RelativeLayout {
             return null ;
         }
 
-        private int getPosition(int position){
-            int i = position % builder.banners.size();
-            if(i == 0){
-                return builder.banners.size() - 1;
-            }else{
-                return i - 1;
-            }
-        }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

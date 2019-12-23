@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cxd.banner.*;
 import com.cxd.banner_demo.R;
 
@@ -28,21 +30,21 @@ public class MainActivity extends AppCompatActivity {
         parentLayout = findViewById(R.id.parentLayout);
 
         banners = new ArrayList<>();
-//        banners.add(R.mipmap.beauty);
-//        banners.add(R.mipmap.beauty_1);
-//        banners.add(R.mipmap.beauty_2);
-//        banners.add(R.mipmap.beauty_3);
-//        banners.add(R.mipmap.beauty_4);
-//        banners.add(R.mipmap.beauty_5);
-//        banners.add(R.mipmap.beauty_6);
-        banners.add(0);
-        banners.add(1);
-        banners.add(2);
-        banners.add(3);
-        banners.add(4);
-        banners.add(5);
-        banners.add(6);
-        banners.add(7);
+        banners.add(R.mipmap.beauty);
+        banners.add(R.mipmap.beauty_1);
+        banners.add(R.mipmap.beauty_2);
+        banners.add(R.mipmap.beauty_3);
+        banners.add(R.mipmap.beauty_4);
+        banners.add(R.mipmap.beauty_5);
+        banners.add(R.mipmap.beauty_6);
+//        banners.add(0);
+//        banners.add(1);
+//        banners.add(2);
+//        banners.add(3);
+//        banners.add(4);
+//        banners.add(5);
+//        banners.add(6);
+//        banners.add(7);
 
         /**
          * 设置banner底部指示点 ... 的样式
@@ -80,16 +82,17 @@ public class MainActivity extends AppCompatActivity {
                  */
                 .onSelectedListener(new OnSelectedListener<ImageView,Integer>() {
                     @Override
-                    public void onSelectedListener(ImageView iv, Integer integer, int position) {
+                    public void onSelectedListener(ImageView iv, Integer integer, final int position) {
                         Log.i("aaa", "onSelectedListener:  "+integer +"  "+position);
                         //可以使用任意框架加载布局
-//                        Glide.with(MainActivity.this).load(integer).into(iv);
+                        Glide.with(MainActivity.this).load(integer).into(iv);
 //                        iv.setImageResource(integer);
                         //给view设置交互监听
                         iv.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 //点击事件
+                                Toast.makeText(MainActivity.this,position+"",Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -112,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         if(banner != null){
             banner.stop();
         }
