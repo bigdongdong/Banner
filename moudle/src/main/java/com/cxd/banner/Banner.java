@@ -53,7 +53,7 @@ public class Banner extends RelativeLayout {
     private Handler handler ;
     private int what = 1; //动态控制该值来实现自动与停播的功能
 
-//    private boolean isRunning = false ;
+    private boolean isRunning = false ;
     private Banner(Activity context , final Builder builder) {
         super(context);
 
@@ -216,18 +216,12 @@ public class Banner extends RelativeLayout {
 
     /* 启动轮播 */
     public void start(){
-        try{
+        if(isRunning == false){
             setAutoPlayTimer();
             timer.schedule(timerTask,100,builder.stayDuration);
-        }catch(Exception e){
-
+            Log.i(TAG, "start:stayDuration "+builder.stayDuration);
+            isRunning = true ;
         }
-
-//        if(timer != null && isRunning == false){
-//            timer.schedule(timerTask,100,builder.stayDuration);
-//            Log.i(TAG, "start:stayDuration "+builder.stayDuration);
-//            isRunning = true ;
-//        }
     }
 
     /* 停止轮播 */
@@ -241,6 +235,7 @@ public class Banner extends RelativeLayout {
         if(handler != null){
             handler.removeCallbacksAndMessages(null);
         }
+        isRunning = false ;
     }
 
     public static class Builder{
