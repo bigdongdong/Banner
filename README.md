@@ -78,7 +78,7 @@ parentLayout.addView(banner); //将banner add进准备好的父布局
         
         
 /**
- * 在onStart中开启轮播，在onDestory中停止轮播，避免内存泄漏
+ * 在onStart中开启轮播，在onStop中停止轮播
  */
 
 @Override
@@ -90,11 +90,11 @@ protected void onStart() {
 }
 
 @Override
-protected void onDestroy() {
-    super.onDestroy();
-    if(banner != null){
-        banner.stop();
-    }
+    protected void onStop() {
+        super.onStop();
+        if(banner != null){
+            banner.stop();
+        }
 }
 ```
 
