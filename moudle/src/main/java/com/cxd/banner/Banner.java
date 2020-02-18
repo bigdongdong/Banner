@@ -316,6 +316,7 @@ public class Banner extends RelativeLayout {
         public Object instantiateItem(ViewGroup container, int position) {
             LayoutParams rparams = new LayoutParams(-1,-1);
 
+
             //根据style返回对应view类型
             if(builder.layoutStyle == LAYOUT_STYLE_RELATIVELAYOUT){ //relativelayout
                 RelativeLayout relativeLayout = new RelativeLayout(context);
@@ -329,6 +330,8 @@ public class Banner extends RelativeLayout {
                 imageView.setLayoutParams(rparams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 int p = position % builder.banners.size();
+                Log.i(TAG, "instantiateItem: position="+position);
+                Log.i(TAG, "instantiateItem: p="+p);
                 builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p),p);
                 container.addView(imageView);
                 return imageView;
