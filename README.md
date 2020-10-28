@@ -60,7 +60,7 @@ banner = new Banner.Builder()
          */
         .onSelectedListener(new OnSelectedListener<ImageView,String>() {
             @Override
-            public void onSelectedListener(ImageView iv, String url) {
+            public void onSelectedListener(ImageView iv, String url,int position) {
                 //可以使用任意框架加载布局
                 Glide.with(MainActivity.this).load(url).into(iv);
                 //给view设置交互监听

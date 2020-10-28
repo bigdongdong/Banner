@@ -128,7 +128,7 @@ public class Banner extends RelativeLayout {
                     currentPosition = i ;
 
                     if(builder.onSelectedListener != null){
-                        builder.onSelectedListener.onPageSelected(i%builder.banners.size());
+                        builder.onSelectedListener.onPageSelected(i);
                     }
                 }
 
@@ -149,7 +149,7 @@ public class Banner extends RelativeLayout {
                     currentPosition = i ;
 
                     if(builder.onSelectedListener != null){
-                        builder.onSelectedListener.onPageSelected(i%builder.banners.size());
+                        builder.onSelectedListener.onPageSelected(i);
                     }
                 }
 
@@ -332,7 +332,7 @@ public class Banner extends RelativeLayout {
                 RelativeLayout relativeLayout = new RelativeLayout(context);
                 relativeLayout.setLayoutParams(rparams);
                 int p = position % builder.banners.size();
-                builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p));
+                builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p),p);
                 container.addView(relativeLayout);
                 return relativeLayout;
             }else if(builder.layoutStyle == LAYOUT_STYLE_IMAGEVIEW){//imageview
@@ -340,7 +340,7 @@ public class Banner extends RelativeLayout {
                 imageView.setLayoutParams(rparams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 int p = position % builder.banners.size();
-                builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p));
+                builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p),p);
                 container.addView(imageView);
                 return imageView;
             }
