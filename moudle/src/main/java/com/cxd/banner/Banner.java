@@ -147,6 +147,10 @@ public class Banner extends RelativeLayout {
                 @Override
                 public void onPageSelected(int i) {
                     currentPosition = i ;
+
+                    if(builder.onSelectedListener != null){
+                        builder.onSelectedListener.onPageSelected(i%builder.banners.size());
+                    }
                 }
 
                 @Override
