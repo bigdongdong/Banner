@@ -13,7 +13,13 @@ public interface OnSelectedListener<V extends View,T>{
      *
      * @param view  如果isHighCustomizationRequired为true，则提供RelativeLayout，否则提供ImageView
      * @param t
+     */
+    void onSelectedListener(V view, T t);
+
+
+    /**
+     * viewpager滚动到当前的pager
      * @param position
      */
-    void onSelectedListener(V view, T t, int position);
+    void onPageSelected(int position) ;
 }

@@ -1,7 +1,7 @@
 package com.cxd.banner_demo;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cxd.banner.*;
-import com.cxd.banner_demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
                  */
                 .onSelectedListener(new OnSelectedListener<ImageView,Integer>() {
                     @Override
-                    public void onSelectedListener(ImageView iv, Integer integer, final int position) {
-                        Log.i("aaa", "onSelectedListener:  "+integer +"  "+position);
+                    public void onSelectedListener(ImageView iv,final Integer integer) {
                         //可以使用任意框架加载布局
                         Glide.with(MainActivity.this).load(integer).into(iv);
 //                        iv.setImageResource(integer);
@@ -92,9 +90,14 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 //点击事件
-                                Toast.makeText(MainActivity.this,position+"",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,integer+"",Toast.LENGTH_SHORT).show();
                             }
                         });
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        Log.i("aaa", "onPageSelected: "+position);
                     }
                 })
                 .build();

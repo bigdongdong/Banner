@@ -7,7 +7,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 
 import java.lang.reflect.Field;
@@ -127,6 +126,10 @@ public class Banner extends RelativeLayout {
                     }
 
                     currentPosition = i ;
+
+                    if(builder.onSelectedListener != null){
+                        builder.onSelectedListener.onPageSelected(i%builder.banners.size());
+                    }
                 }
 
                 @Override
@@ -187,6 +190,10 @@ public class Banner extends RelativeLayout {
         };
     }
 
+    public ViewPager getViewPager(){
+        return viewPager ;
+    }
+
     /* 初始化轮播timer */
     private void setAutoPlayTimer(){
         timer = new Timer();
@@ -219,7 +226,6 @@ public class Banner extends RelativeLayout {
         if(isRunning == false){
             setAutoPlayTimer();
             timer.schedule(timerTask,100,builder.stayDuration);
-            Log.i(TAG, "start:stayDuration "+builder.stayDuration);
             isRunning = true ;
         }
     }
@@ -322,7 +328,7 @@ public class Banner extends RelativeLayout {
                 RelativeLayout relativeLayout = new RelativeLayout(context);
                 relativeLayout.setLayoutParams(rparams);
                 int p = position % builder.banners.size();
-                builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p),p);
+                builder.onSelectedListener.onSelectedListener(relativeLayout,builder.banners.get(p));
                 container.addView(relativeLayout);
                 return relativeLayout;
             }else if(builder.layoutStyle == LAYOUT_STYLE_IMAGEVIEW){//imageview
@@ -330,9 +336,7 @@ public class Banner extends RelativeLayout {
                 imageView.setLayoutParams(rparams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 int p = position % builder.banners.size();
-                Log.i(TAG, "instantiateItem: position="+position);
-                Log.i(TAG, "instantiateItem: p="+p);
-                builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p),p);
+                builder.onSelectedListener.onSelectedListener(imageView,builder.banners.get(p));
                 container.addView(imageView);
                 return imageView;
             }

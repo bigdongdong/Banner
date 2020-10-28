@@ -15,7 +15,7 @@
   }
   
   dependencies {
-	  implementation 'com.github.bigdongdong:Banner:4.1' //添加依赖
+	  implementation 'com.github.bigdongdong:Banner:4.5.28.x' //添加依赖
   }
 ```
 
@@ -60,7 +60,7 @@ banner = new Banner.Builder()
          */
         .onSelectedListener(new OnSelectedListener<ImageView,String>() {
             @Override
-            public void onSelectedListener(ImageView iv, String url, int position) {
+            public void onSelectedListener(ImageView iv, String url) {
                 //可以使用任意框架加载布局
                 Glide.with(MainActivity.this).load(url).into(iv);
                 //给view设置交互监听
@@ -70,6 +70,11 @@ banner = new Banner.Builder()
 
                     }
                 });
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //position->当前滚动到的页码，方便自定义指示器
             }
         })
         .build();
