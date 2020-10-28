@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                  */
                 .onSelectedListener(new OnSelectedListener<ImageView,Integer>() {
                     @Override
-                    public void onSelectedListener(ImageView iv,final Integer integer) {
+                    public void onSelectedListener(ImageView iv,final Integer integer,int position) {
                         //可以使用任意框架加载布局
                         Glide.with(MainActivity.this).load(integer).into(iv);
 //                        iv.setImageResource(integer);
