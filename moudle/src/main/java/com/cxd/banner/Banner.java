@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -58,6 +61,21 @@ public class Banner extends RelativeLayout {
 
         this.context = context ;
         this.builder = builder ;
+
+        //添加生命周期回调
+        if(context instanceof AppCompatActivity){
+            ((AppCompatActivity)context).getLifecycle().addObserver(new BannerLifeCycle() {
+                @Override
+                public void onStart() {
+                    start();
+                }
+
+                @Override
+                public void onStop() {
+                    stop();
+                }
+            });
+        }
 
         /* 初始化viewpager */
         params = new LayoutParams(-1,-1);

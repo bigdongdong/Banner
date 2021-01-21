@@ -108,21 +108,5 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 在onStart中开启轮播，在onDestory中停止轮播，避免内存泄漏
      */
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(banner != null){
-            banner.start();
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(banner != null){
-            banner.stop();
-        }
-    }
 }
 
