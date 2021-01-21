@@ -81,26 +81,6 @@ banner = new Banner.Builder()
 
 parentLayout.addView(banner); //将banner add进准备好的父布局
         
-        
-/**
- * 在onStart中开启轮播，在onStop中停止轮播
- */
-
-@Override
-protected void onStart() {
-    super.onStart();
-    if(banner != null){
-        banner.start();
-    }
-}
-
-@Override
-    protected void onStop() {
-        super.onStop();
-        if(banner != null){
-            banner.stop();
-        }
-}
 ```
 
 
