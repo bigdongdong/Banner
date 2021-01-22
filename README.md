@@ -80,6 +80,10 @@ banner = new Banner.Builder()
         .build();
 
 parentLayout.addView(banner); //将banner add进准备好的父布局
+
+//在合适的地方调用
+banner.start();//启动
+banner.stop();//关闭
         
 ```
 
