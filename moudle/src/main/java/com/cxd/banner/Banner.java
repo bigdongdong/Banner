@@ -222,6 +222,18 @@ public class Banner extends RelativeLayout {
         timerTask = new TimerTask() {
             @Override
             public void run() {
+                if(handler == null){
+                    /*三星手机对Handler有特殊的回收机制*/
+                    handler = new Handler(Looper.getMainLooper()){
+                        @Override
+                        public void handleMessage(Message msg) {
+                            super.handleMessage(msg);
+                            if(msg.what == 1){
+                                viewPager.setCurrentItem(currentPosition++);
+                            }
+                        }
+                    };
+                }
                 //发送handler，下滑viewpager
                 handler.sendEmptyMessage(what);
             }
